@@ -3,7 +3,6 @@
 from math import log10
 import pyaudio
 import wave
-import numpy
 import signal
 import sys
 
@@ -11,8 +10,6 @@ CHUNK = 1024
 FORMAT = pyaudio.paUInt8
 CHANNELS = 1
 RATE = 44100
-RECORD_SECONDS = 5
-WAVE_OUTPUT_FILENAME = "output.wav"
 
 p = pyaudio.PyAudio()
 
@@ -28,10 +25,10 @@ def get_db(data):
     db = int(20.0 * log10(max - min))
     return db
 
-print("* get_device_count(): %d" % p.get_device_count())
-
-for i in xrange(p.get_device_count()):
-    print("* %d: %s" % (i, p.get_device_info_by_index(i)['name']));
+if (False):
+    print("* get_device_count(): %d" % p.get_device_count())
+    for i in xrange(p.get_device_count()):
+        print("* %d: %s" % (i, p.get_device_info_by_index(i)['name']));
 
 stream = p.open(format=FORMAT,
                 channels=CHANNELS,
