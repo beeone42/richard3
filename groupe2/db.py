@@ -22,10 +22,15 @@ def get_db(data):
             min = c
         if (c > max):
             max = c
-    db = int(20.0 * log10(max - min))
+    try:
+        db = int(20.0 * log10(abs(max - min)))
+    except:
+        print "aie aie aie"
+        db = 0
+        pass
     return db
 
-if (False):
+if (True):
     print("* get_device_count(): %d" % p.get_device_count())
     for i in xrange(p.get_device_count()):
         print("* %d: %s" % (i, p.get_device_info_by_index(i)['name']));
